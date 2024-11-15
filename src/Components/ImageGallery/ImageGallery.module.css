@@ -1,0 +1,13 @@
+.imageGallery {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.galleryItem {
+  cursor: pointer;
+}
+.galleryItem:hover {
+  transform: scale(1.1);
+}
