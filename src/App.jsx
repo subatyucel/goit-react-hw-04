@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import SearchBar from "./Components/SearchBar/SearchBar";
+import SearchBar from "./components/SearchBar/SearchBar";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
-import ImageGallery from "./Components/ImageGallery/ImageGallery";
-import Loader from "./Components/Loader/Loader";
-import LoadMore from "./Components/LoadMore/LoadMore";
-import ImageModal from "./Components/ImageModal/ImageModal";
+import ImageGallery from "./components/ImageGallery/ImageGallery";
+import Loader from "./components/Loader/Loader";
+import LoadMore from "./components/LoadMore/LoadMore";
+import ImageModal from "./components/ImageModal/ImageModal";
 
 function App() {
   const [images, setImages] = useState([]);
