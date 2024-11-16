@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import SearchBar from "./components/SearchBar/SearchBar";
-import axios from "axios";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
 import Loader from "./components/Loader/Loader";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./components/ImageModal/ImageModal";
+import getAndSetImages from "./utils/getAndSetImages";
 
 function App() {
   const [images, setImages] = useState([]);
@@ -17,29 +17,6 @@ function App() {
 
   //api url
   const url = `https://api.unsplash.com/search/photos/?client_id=NO4bIwCQaOslhJk3_yAfW6IJQglvzrALVESzW6_aMGM&page=${page}&query=${query}`;
-
-  //send request function
-  async function getAndSetImages(more = false) {
-    setLoading(true);
-    try {
-      const response = await axios.get(url);
-      const data = response.data;
-
-      if (data.results.length === 0) {
-        toast.error(
-          "Nothing to find with this value, please try something else!"
-        );
-      } else {
-        more
-          ? setImages((prevImages) => [...prevImages, ...data.results])
-          : setImages([...data.results]);
-      }
-    } catch (error) {
-      toast.error(error.message);
-    } finally {
-      setLoading(false);
-    }
-  }
 
   function openModal(image) {
     setModalImg(image);
@@ -55,12 +32,12 @@ function App() {
   useEffect(() => {
     if (query) {
       if (page > 1) {
-        getAndSetImages(true);
+        getAndSetImages(url, setLoading, setImages, true);
       } else {
-        getAndSetImages();
+        getAndSetImages(url, setLoading, setImages);
       }
     }
-  }, [query, page]);
+  }, [query, page, url]);
 
   return (
     <>
