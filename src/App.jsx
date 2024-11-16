@@ -4,7 +4,7 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
 import Loader from "./components/Loader/Loader";
-import LoadMore from "./components/LoadMore/LoadMore";
+import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./components/ImageModal/ImageModal";
 
 function App() {
@@ -67,7 +67,7 @@ function App() {
       <SearchBar query={query} setQuery={setQuery} setPage={setPage} />
       <ImageGallery images={images} onImgClick={openModal} />
       {loading && <Loader />}
-      {images.length > 1 && <LoadMore setPage={setPage} />}
+      {images.length > 1 && <LoadMoreBtn setPage={setPage} />}
       {modalImg && (
         <ImageModal
           isModalOpen={isModalOpen}
